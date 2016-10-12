@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "Grocery-List",
   "version": "1.0.0",
-  "description": "",
-  "repository": "",
+  "description": "An application to build a grocery list.",
+  "repository": "https://github.com/JasonMize/grocery-list.git",
   "scripts": {
     "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -1,7 +1,6 @@
-# DJANGO SEED
+#Grocery List
 
-Starting point for Django, Django Rest Framework, Angular, Webpack and Gulp projects.
+An app to build a grocery list. 
 
-See the using-django-seed.md in the docs for usage.
+An excercise in tying together back-end Django/Python and front-end Angular/Javascript via Django's Rest Framework.
 
-**Replace the contents of this doc with a README for your project**
