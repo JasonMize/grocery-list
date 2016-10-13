@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+
+    <div class="panel-body">
+        <pre>
+            {{ groceryItemCtrl.grocery.name }}
+        </pre>
+        <div>
+            How many? {{ groceryItemCtrl.grocery.quantity }}
+        </div>
+        <div>
+            Cost Per Item? {{ groceryItemCtrl.grocery.price }}
+        </div>
+    </div>
+    
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            {{ groceryItemCtrl.grocery.created | date: 'medium' }}
+        </div>
+    </div>
+
+</div>

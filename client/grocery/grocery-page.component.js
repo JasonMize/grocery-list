@@ -4,12 +4,8 @@ import GroceryPageController from './grocery-page.controller';
 
 const groceryPageComponent = {
     template,
-    controller: GroceryPageController, 
-    controllerAs: 'groceryPageCtrl', 
+    controller: GroceryPageController,
+    controllerAs: 'groceryPageCtrl',
 };
 
 export default groceryPageComponent;
-
-
-
-
