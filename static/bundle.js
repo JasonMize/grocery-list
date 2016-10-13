@@ -66,9 +66,13 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
+	var _grocery = __webpack_require__(7);
+	
+	var _grocery2 = _interopRequireDefault(_grocery);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var AppModule = _angular2.default.module('app', []).component('app', _app2.default);
+	var AppModule = _angular2.default.module('app', [_grocery2.default.name]).component('app', _app2.default);
 	
 	exports.default = AppModule;
 
@@ -31885,7 +31889,7 @@
 /* 5 */
 /***/ function(module, exports) {
 
-	module.exports = "<header>\n    <nav class=\"navbar navbar-inverse navbar-static-top\">\n        <div class=\"container-fluid\">\n            <div class=\"navbar-header\">\n                <span class=\"navbar-brand\">\n                    <i class=\"fa fa-thumbs-o-up\"></i> Django Seed\n                </span>\n            </div>\n        </div>\n    </nav>\n</header>\n<div class=\"container-fluid\">\n    Angular is working!\n</div>"
+	module.exports = "<header>\n    <nav class=\"navbar navbar-inverse navbar-static-top\">\n        <div class=\"container-fluid\">\n            <div class=\"navbar-header\">\n                <span class=\"navbar-brand\">\n                    <i class=\"fa fa-thumbs-o-up\"></i> Grocery List\n                </span>\n            </div>\n        </div>\n    </nav>\n</header>\n<div class=\"container-fluid\">\n    <grocery-page />\n</div>"
 
 /***/ },
 /* 6 */
@@ -31900,6 +31904,85 @@
 	function AppController() {}
 	
 	exports.default = AppController;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _angular = __webpack_require__(2);
+	
+	var _angular2 = _interopRequireDefault(_angular);
+	
+	var _groceryPage = __webpack_require__(8);
+	
+	var _groceryPage2 = _interopRequireDefault(_groceryPage);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var GroceryModule = _angular2.default.module('grocery', []).component('groceryPage', _groceryPage2.default);
+	
+	exports.default = GroceryModule;
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _groceryPage = __webpack_require__(9);
+	
+	var _groceryPage2 = _interopRequireDefault(_groceryPage);
+	
+	var _groceryPage3 = __webpack_require__(10);
+	
+	var _groceryPage4 = _interopRequireDefault(_groceryPage3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var groceryPageComponent = {
+	    template: _groceryPage2.default,
+	    controller: _groceryPage4.default,
+	    controllerAs: 'groceryPageCtrl'
+	};
+	
+	exports.default = groceryPageComponent;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"row\">\n    <div class=\"col-md-8 col-md-offset-2\">\n        \n        <div class=\"jumbotron\">\n            <h1>Grocery List</h1>\n            <p class=\"lead\">\n                Items necessary for sanity and happiness of house and home.\n            </p>\n        </div>\n        \n        <div>\n            <h2>Items</h2>\n        </div>    \n\n        <groceries grocery='groceryPageCtrl.grocery' />\n    \n        \n\n    </div>\n</div>"
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	function GroceryPageController() {
+	    var ctrl = this;
+	
+	    ctrl.grocery = {
+	        name: 'milk',
+	        created: new Date(Date.now())
+	    };
+	}
+	
+	exports.default = GroceryPageController;
 
 /***/ }
 /******/ ]);
