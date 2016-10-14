@@ -32929,7 +32929,7 @@
 /* 14 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<form ng-submit='groceryEditCtrl.saveGrocery()'>\n    <div class=\"form-group\">\n        <label>\n            New Grocery Item\n        </label>\n       \n        <input type=\"text\" class='form-control' placeholder='Item' ng-model='groceryEditCtrl.editedGrocery.name'>\n\n        <input type=\"number\" class='form-control' placeholder=\"How Many\" ng-model='groceryEditCtrl.editedGrocery.quantity'>\n        \n        <input type='number' class='form-control' placeholder='Cost Per Item' ng-model='groceryEditCtrl.editedGrocery.price'>\n    \n    </div>\n    <button class='btn btn-primary' type='submit'>Save Item</button>\n</form>\n\n"
+	module.exports = "\n<form ng-submit='groceryEditCtrl.saveGrocery()'>\n    <div class=\"form-group\">\n        <label>\n            New Grocery Item\n        </label>\n       \n        <input type=\"text\" class='form-control' placeholder='Item' ng-model='groceryEditCtrl.editedGrocery.name'>\n\n        <input type=\"number\" class='form-control' placeholder=\"How Many\" ng-model='groceryEditCtrl.editedGrocery.quantity'>\n        \n        <input type='number' class='form-control' placeholder='Cost Per Item' ng-model='groceryEditCtrl.editedGrocery.price'>\n    \n    </div>\n    \n    <button \n        ng-disabled = '!groceryEditCtrl.editedGrocery.name'\n        class='btn btn-primary' \n        type='submit'\n    >\n        Save Item\n    </button>\n\n</form>\n\n"
 
 /***/ },
 /* 15 */
@@ -41847,7 +41847,7 @@
 /* 19 */
 /***/ function(module, exports) {
 
-	module.exports = "<header>\n    <nav class=\"navbar navbar-inverse navbar-static-top\">\n        <div class=\"container-fluid\">\n            <div class=\"navbar-header\">\n                <span class=\"navbar-brand\">\n                    <i class=\"fa fa-thumbs-o-up\"></i> Grocery List\n                </span>\n            </div>\n        </div>\n    </nav>\n</header>\n\n<div class=\"container-fluid\">\n    <grocery-page />            \n</div>"
+	module.exports = "<header>\n    <nav class=\"navbar navbar-inverse navbar-static-top\">\n        <div class=\"container-fluid\">\n            <div class=\"navbar-header\">\n                <span class=\"navbar-brand\">\n                    <i class=\"fa fa-cutlery\"></i>\n                    Grocery List\n                </span>\n            </div>\n        </div>\n    </nav>\n</header>\n\n<div class=\"container-fluid\">\n    <grocery-page />            \n</div>"
 
 /***/ },
 /* 20 */
