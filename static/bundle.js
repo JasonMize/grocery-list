@@ -32806,7 +32806,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n\n    <div class=\"col-md-8 col-md-offset-2\">\n        <div class=\"jumbotron\">\n            <h1>Grocery List</h1>\n            <p class=\"lead\">\n                Items necessary for happiness of house and home.\n            </p>\n            <grocery-edit\n                grocery='groceryPageCtrl.editedGrocery'\n                save='groceryPageCtrl.saveSup(editedGrocery)'\n            />\n        </div>\n    </div>\n        \n    <div class=\"col-md-8 col-md-offset-2\">\n        <div>\n            <h2>Items</h2>\n        </div>    \n\n        <grocery-item ng-repeat='grocery in groceryPageCtrl.groceries' grocery='grocery' />\n    </div>\n\n\n\n</div>\n"
+	module.exports = "<div class=\"row\">\n\n    <div class=\"col-md-8 col-md-offset-2\">\n        <div class=\"jumbotron\">\n            <h1>Grocery List</h1>\n            <p class=\"lead\">\n                Items necessary for happiness of house and home.\n            </p>\n            <grocery-edit\n                grocery='groceryPageCtrl.editedGrocery'\n                save='groceryPageCtrl.saveGrocery(editedGrocery)'\n            />\n        </div>\n    </div>\n        \n    <div class=\"col-md-8 col-md-offset-2\">\n        <div>\n            <h2>Items</h2>\n        </div>    \n\n        <grocery-item ng-repeat='grocery in groceryPageCtrl.groceries' grocery='grocery' />\n    </div>\n\n\n\n</div>\n"
 
 /***/ },
 /* 9 */
@@ -32836,7 +32836,6 @@
 	        groceryAPIService.grocery.save(editedGrocery).$promise.then(function (savedGrocery) {
 	            ctrl.groceries = [savedGrocery].concat(_toConsumableArray(ctrl.groceries));
 	            ctrl.editedGrocery = {};
-	            // alert('grocery item entered');
 	        });
 	    };
 	}
@@ -32953,7 +32952,6 @@
 	    };
 	
 	    ctrl.saveGrocery = function saveGrocery() {
-	        console.log('grocery-edit.controller saveGrocery name: ' + ctrl.editedGrocery.name);
 	        ctrl.save({ editedGrocery: ctrl.editedGrocery });
 	    };
 	}
@@ -41809,7 +41807,7 @@
 	
 	function groceryAPIService($resource) {
 	    var api = {
-	        grocery: $resource('/api/groceryitems')
+	        grocery: $resource('/api/groceryitems/:id/')
 	    };
 	
 	    return api;

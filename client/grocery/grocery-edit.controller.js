@@ -9,7 +9,6 @@ function GroceryEditController() {
     };
 
     ctrl.saveGrocery = function saveGrocery() {
-        console.log('grocery-edit.controller saveGrocery name: ' + ctrl.editedGrocery.name);
         ctrl.save({ editedGrocery: ctrl.editedGrocery });
     };
 }

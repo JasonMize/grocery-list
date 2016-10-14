@@ -1,7 +1,7 @@
 
 function groceryAPIService($resource) {
     const api = {
-        grocery: $resource('/api/groceryitems'),
+        grocery: $resource('/api/groceryitems/:id/'),
     };
 
     return api;

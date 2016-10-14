@@ -18,7 +18,6 @@ function GroceryPageController(groceryAPIService, $interval) {
                 ...ctrl.groceries,
             ];
             ctrl.editedGrocery = {};
-            // alert('grocery item entered');
         });
     };
 }
