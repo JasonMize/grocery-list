@@ -32877,7 +32877,7 @@
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"panel panel-default\">\n\n    <div class=\"panel-body\">\n        <pre>\n            {{ groceryItemCtrl.grocery.name }}\n        </pre>\n        <div>\n            How many? {{ groceryItemCtrl.grocery.quantity }}\n        </div>\n        <div>\n            Cost Per Item? {{ groceryItemCtrl.grocery.price }}\n        </div>\n    </div>\n    \n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{ groceryItemCtrl.grocery.created | date: 'medium' }}\n        </div>\n    </div>\n\n</div>"
+	module.exports = "<div class=\"panel panel-default grocery-item\">\n\n    <div class=\"panel-body\">\n        <div>\n            {{ groceryItemCtrl.grocery.name }}\n        </div>\n        <div>\n            How many? {{ groceryItemCtrl.grocery.quantity }}\n        </div>\n        <div>\n            Cost Per Item? {{ groceryItemCtrl.grocery.price }}\n        </div>\n\n        <grocery-edit\n            ng-show='groceryItemCtrl.editMode'\n            cancel='groceryItemCtrl.setEditMode(false)'\n        />\n\n    </div>\n    \n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{ groceryItemCtrl.grocery.created | date: 'medium' }}\n        </div>\n\n        <div>\n            <button \n                class='btn btn-default'\n                ng-click='groceryItemCtrl.setEditMode(true)'\n            >\n                <i class='fa fa-pencil-square-o'></i>\n            </button>\n            \n            <button\n                class='btn btn-danger'\n            >\n                <i class='fa fa-trash-o'></i>\n            </button>\n        </div>\n\n    </div>\n\n</div>"
 
 /***/ },
 /* 12 */
@@ -32886,10 +32886,17 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	
-	function GroceryItemController() {}
+	function GroceryItemController() {
+	    var ctrl = this;
+	    ctrl.editMode = false;
+	
+	    ctrl.setEditMode = function setEditMode(editMode) {
+	        ctrl.editMode = editMode;
+	    };
+	}
 	
 	exports.default = GroceryItemController;
 
@@ -32916,8 +32923,9 @@
 	var groceryEditComponent = {
 	    template: _groceryEdit2.default,
 	    bindings: {
+	        grocery: '<',
 	        save: '&',
-	        grocery: '<'
+	        cancel: '&?'
 	    },
 	    controller: _groceryEdit4.default,
 	    controllerAs: 'groceryEditCtrl'
@@ -32929,7 +32937,7 @@
 /* 14 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<form ng-submit='groceryEditCtrl.saveGrocery()'>\n    <div class=\"form-group\">\n        <label>\n            New Grocery Item\n        </label>\n       \n        <input type=\"text\" class='form-control' placeholder='Item' ng-model='groceryEditCtrl.editedGrocery.name'>\n\n        <input type=\"number\" class='form-control' placeholder=\"How Many\" ng-model='groceryEditCtrl.editedGrocery.quantity'>\n        \n        <input type='number' class='form-control' placeholder='Cost Per Item' ng-model='groceryEditCtrl.editedGrocery.price'>\n    \n    </div>\n    \n    <button \n        ng-disabled = '!groceryEditCtrl.editedGrocery.name'\n        class='btn btn-primary' \n        type='submit'\n    >\n        Save Item\n    </button>\n\n</form>\n\n"
+	module.exports = "\n<form ng-submit='groceryEditCtrl.saveGrocery()'>\n    <div class=\"form-group\">\n        <label>\n            New Grocery Item\n        </label>\n       \n        <input type=\"text\" class='form-control' placeholder='Item' ng-model='groceryEditCtrl.editedGrocery.name'>\n\n        <input type=\"number\" class='form-control' placeholder=\"How Many\" ng-model='groceryEditCtrl.editedGrocery.quantity'>\n        \n        <input type='number' class='form-control' placeholder='Cost Per Item' ng-model='groceryEditCtrl.editedGrocery.price'>\n    \n    </div>\n    \n    <button \n        ng-disabled='!groceryEditCtrl.editedGrocery.name'\n        class='btn btn-primary' \n        type='submit'\n    >\n        Save Item\n    </button>\n\n    <button\n        ng-show='groceryEditCtrl.cancel'\n        class='btn btn-danger'\n        type='button'\n        ng-click='groceryEditCtrl.cancel()'\n    >\n        Cancel\n    </button>\n\n</form>\n\n"
 
 /***/ },
 /* 15 */

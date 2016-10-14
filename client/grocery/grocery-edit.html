@@ -14,11 +14,20 @@
     </div>
     
     <button 
-        ng-disabled = '!groceryEditCtrl.editedGrocery.name'
+        ng-disabled='!groceryEditCtrl.editedGrocery.name'
         class='btn btn-primary' 
         type='submit'
     >
         Save Item
+    </button>
+
+    <button
+        ng-show='groceryEditCtrl.cancel'
+        class='btn btn-danger'
+        type='button'
+        ng-click='groceryEditCtrl.cancel()'
+    >
+        Cancel
     </button>
 
 </form>

@@ -1,21 +1,43 @@
-<div class="panel panel-default">
+<div class="panel panel-default grocery-item">
 
     <div class="panel-body">
-        <pre>
+        <div>
             {{ groceryItemCtrl.grocery.name }}
-        </pre>
+        </div>
         <div>
             How many? {{ groceryItemCtrl.grocery.quantity }}
         </div>
         <div>
             Cost Per Item? {{ groceryItemCtrl.grocery.price }}
         </div>
+
+        <grocery-edit
+            ng-show='groceryItemCtrl.editMode'
+            cancel='groceryItemCtrl.setEditMode(false)'
+        />
+
     </div>
     
     <div class="panel-footer clearfix">
         <div class="pull-right">
             {{ groceryItemCtrl.grocery.created | date: 'medium' }}
         </div>
+
+        <div>
+            <button 
+                class='btn btn-default'
+                ng-click='groceryItemCtrl.setEditMode(true)'
+            >
+                <i class='fa fa-pencil-square-o'></i>
+            </button>
+            
+            <button
+                class='btn btn-danger'
+            >
+                <i class='fa fa-trash-o'></i>
+            </button>
+        </div>
+
     </div>
 
 </div>

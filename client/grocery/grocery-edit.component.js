@@ -5,8 +5,9 @@ import GroceryEditController from './grocery-edit.controller';
 const groceryEditComponent = {
     template,
     bindings: {
-        save: '&',
         grocery: '<',
+        save: '&',
+        cancel: '&?',
     },
     controller: GroceryEditController,
     controllerAs: 'groceryEditCtrl',
