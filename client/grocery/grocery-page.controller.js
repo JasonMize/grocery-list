@@ -1,18 +1,26 @@
 
 function GroceryPageController(groceryAPIService, $interval) {
     const ctrl = this;
-    ctrl.grocery = {
-        name: 'milk',
-        created: new Date(Date.now()),
-    };
+    ctrl.editedGrocery = {};
 
     function getGrocery() {
         groceryAPIService.grocery.get().$promise.then((data) => {
-            ctrl.grocery = data.results;
+            ctrl.groceries = data.results;
         });
     }
     getGrocery();
     $interval(getGrocery, 4000);
+
+    ctrl.saveGrocery = function saveGrocery(editedGrocery) {
+        groceryAPIService.grocery.save(editedGrocery).$promise.then((savedGrocery) => {
+            ctrl.groceries = [
+                savedGrocery,
+                ...ctrl.groceries,
+            ];
+            ctrl.editedGrocery = {};
+            // alert('grocery item entered');
+        });
+    };
 }
 
 export default GroceryPageController;

@@ -6,6 +6,10 @@
             <p class="lead">
                 Items necessary for happiness of house and home.
             </p>
+            <grocery-edit
+                grocery='groceryPageCtrl.editedGrocery'
+                save='groceryPageCtrl.saveSup(editedGrocery)'
+            />
         </div>
     </div>
         
@@ -14,7 +18,7 @@
             <h2>Items</h2>
         </div>    
 
-        <grocery-item ng-repeat='grocery in groceryPageCtrl.grocery' grocery='grocery' />
+        <grocery-item ng-repeat='grocery in groceryPageCtrl.groceries' grocery='grocery' />
     </div>
 
 
