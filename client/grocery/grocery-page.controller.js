@@ -1,7 +1,7 @@
 import { findIndex } from 'ramda';
 
 
-function GroceryPageController(groceryAPIService, $interval) {
+function GroceryPageController(groceryAPIService, flashesService, $interval) {
     const ctrl = this;
     ctrl.editedGrocery = {};
 
@@ -20,11 +20,13 @@ function GroceryPageController(groceryAPIService, $interval) {
                 ...ctrl.groceries,
             ];
             ctrl.editedGrocery = {};
+            flashesService.displayMessage('Grocery Item Created!', 'success');
         });
     };
 
     ctrl.updateGrocery = function updateGrocery(groceryToUpdate) {
         groceryAPIService.grocery.update(groceryToUpdate).$promise.then(() => {
+            flashesService.displayMessage('Grocery Item Updated!', 'success');
         });
     };
 
@@ -37,7 +39,7 @@ function GroceryPageController(groceryAPIService, $interval) {
         }
 
         groceryAPIService.grocery.delete(groceryToDelete).$promise.then(() => {
-
+            flashesService.displayMessage('Grocery Item Deleted.', 'success');
         });
     };
 }
