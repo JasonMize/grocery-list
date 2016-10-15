@@ -1,21 +1,26 @@
-<div class="panel panel-default grocery-item">
+<div 
+    class="panel panel-default grocery-item"
+    ng-mouseover='groceryItemCtrl.setShowControls(true)'
+    ng-mouseout='groceryItemCtrl.setShowControls(false)'
+>
 
     <div class="panel-body">
-        <div>
+        <div class='lead' ng-show='!groceryItemCtrl.editMode'>
             {{ groceryItemCtrl.grocery.name }}
         </div>
-        <div>
+        <div ng-show='!groceryItemCtrl.editMode'>
             How many? {{ groceryItemCtrl.grocery.quantity }}
         </div>
-        <div>
+        <div ng-show='!groceryItemCtrl.editMode'>
             Cost Per Item? {{ groceryItemCtrl.grocery.price }}
         </div>
 
         <grocery-edit
             ng-show='groceryItemCtrl.editMode'
+            grocery='groceryItemCtrl.groceryToEdit'
+            save='groceryItemCtrl.editGrocery(editedGrocery)'
             cancel='groceryItemCtrl.setEditMode(false)'
-        />
-
+        ></grocery-edit>
     </div>
     
     <div class="panel-footer clearfix">
@@ -23,7 +28,9 @@
             {{ groceryItemCtrl.grocery.created | date: 'medium' }}
         </div>
 
-        <div>
+        <div 
+            ng-show='groceryItemCtrl.showControls'
+        >
             <button 
                 class='btn btn-default'
                 ng-click='groceryItemCtrl.setEditMode(true)'
@@ -33,6 +40,7 @@
             
             <button
                 class='btn btn-danger'
+                ng-click='groceryItemCtrl.deleteGrocery()'
             >
                 <i class='fa fa-trash-o'></i>
             </button>

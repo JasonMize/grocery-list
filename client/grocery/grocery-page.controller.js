@@ -1,3 +1,5 @@
+import { findIndex } from 'ramda';
+
 
 function GroceryPageController(groceryAPIService, $interval) {
     const ctrl = this;
@@ -18,6 +20,24 @@ function GroceryPageController(groceryAPIService, $interval) {
                 ...ctrl.groceries,
             ];
             ctrl.editedGrocery = {};
+        });
+    };
+
+    ctrl.updateGrocery = function updateGrocery(groceryToUpdate) {
+        groceryAPIService.grocery.update(groceryToUpdate).$promise.then(() => {
+        });
+    };
+
+    ctrl.deleteGrocery = function deleteGrocery(groceryToDelete) {
+        const findGrocery = findIndex(item => groceryToDelete.id === item.id);
+        const index = findGrocery(ctrl.groceries);
+
+        if (index !== -1) {
+            ctrl.groceries.splice(index, 1);
+        }
+
+        groceryAPIService.grocery.delete(groceryToDelete).$promise.then(() => {
+
         });
     };
 }

@@ -31877,11 +31877,11 @@
 	
 	var _groceryPage2 = _interopRequireDefault(_groceryPage);
 	
-	var _groceryItem = __webpack_require__(10);
+	var _groceryItem = __webpack_require__(11);
 	
 	var _groceryItem2 = _interopRequireDefault(_groceryItem);
 	
-	var _groceryEdit = __webpack_require__(13);
+	var _groceryEdit = __webpack_require__(14);
 	
 	var _groceryEdit2 = _interopRequireDefault(_groceryEdit);
 	
@@ -32806,17 +32806,19 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n\n    <div class=\"col-md-8 col-md-offset-2\">\n        <div class=\"jumbotron\">\n            <h1>Grocery List</h1>\n            <p class=\"lead\">\n                Items necessary for happiness of house and home.\n            </p>\n            <grocery-edit\n                grocery='groceryPageCtrl.editedGrocery'\n                save='groceryPageCtrl.saveGrocery(editedGrocery)'\n            />\n        </div>\n    </div>\n        \n    <div class=\"col-md-8 col-md-offset-2\">\n        <div>\n            <h2>Items</h2>\n        </div>    \n\n        <grocery-item ng-repeat='grocery in groceryPageCtrl.groceries' grocery='grocery' />\n    </div>\n\n\n\n</div>\n"
+	module.exports = "<div class=\"row\">\n\n    <div class=\"col-md-8 col-md-offset-2\">\n        <div class=\"jumbotron\">\n            <h1>Grocery List</h1>\n            <p class=\"lead\">\n                Items necessary for happiness of house and home.\n            </p>\n            <grocery-edit\n                grocery='groceryPageCtrl.editedGrocery'\n                save='groceryPageCtrl.saveGrocery(editedGrocery)'\n            />\n        </div>\n    </div>\n        \n    <div class=\"col-md-8 col-md-offset-2\">\n        <div>\n            <h2>Items</h2>\n        </div>    \n\n        <grocery-item \n            ng-repeat='grocery in groceryPageCtrl.groceries track by grocery.id' \n            grocery='grocery'\n            delete='groceryPageCtrl.deleteGrocery(groceryToDelete)' \n            update='groceryPageCtrl.updateGrocery(groceryToUpdate)'\n        />\n    </div>\n\n\n\n</div>\n"
 
 /***/ },
 /* 9 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	
+	var _ramda = __webpack_require__(10);
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
@@ -32838,136 +32840,29 @@
 	            ctrl.editedGrocery = {};
 	        });
 	    };
+	
+	    ctrl.updateGrocery = function updateGrocery(groceryToUpdate) {
+	        groceryAPIService.grocery.update(groceryToUpdate).$promise.then(function () {});
+	    };
+	
+	    ctrl.deleteGrocery = function deleteGrocery(groceryToDelete) {
+	        var findGrocery = (0, _ramda.findIndex)(function (item) {
+	            return groceryToDelete.id === item.id;
+	        });
+	        var index = findGrocery(ctrl.groceries);
+	
+	        if (index !== -1) {
+	            ctrl.groceries.splice(index, 1);
+	        }
+	
+	        groceryAPIService.grocery.delete(groceryToDelete).$promise.then(function () {});
+	    };
 	}
 	
 	exports.default = GroceryPageController;
 
 /***/ },
 /* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _groceryItem = __webpack_require__(11);
-	
-	var _groceryItem2 = _interopRequireDefault(_groceryItem);
-	
-	var _groceryItem3 = __webpack_require__(12);
-	
-	var _groceryItem4 = _interopRequireDefault(_groceryItem3);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var groceryItemComponent = {
-	    template: _groceryItem2.default,
-	    bindings: {
-	        grocery: '<'
-	    },
-	    controller: _groceryItem4.default,
-	    controllerAs: 'groceryItemCtrl'
-	};
-	
-	exports.default = groceryItemComponent;
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"panel panel-default grocery-item\">\n\n    <div class=\"panel-body\">\n        <div>\n            {{ groceryItemCtrl.grocery.name }}\n        </div>\n        <div>\n            How many? {{ groceryItemCtrl.grocery.quantity }}\n        </div>\n        <div>\n            Cost Per Item? {{ groceryItemCtrl.grocery.price }}\n        </div>\n\n        <grocery-edit\n            ng-show='groceryItemCtrl.editMode'\n            cancel='groceryItemCtrl.setEditMode(false)'\n        />\n\n    </div>\n    \n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{ groceryItemCtrl.grocery.created | date: 'medium' }}\n        </div>\n\n        <div>\n            <button \n                class='btn btn-default'\n                ng-click='groceryItemCtrl.setEditMode(true)'\n            >\n                <i class='fa fa-pencil-square-o'></i>\n            </button>\n            \n            <button\n                class='btn btn-danger'\n            >\n                <i class='fa fa-trash-o'></i>\n            </button>\n        </div>\n\n    </div>\n\n</div>"
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	function GroceryItemController() {
-	    var ctrl = this;
-	    ctrl.editMode = false;
-	
-	    ctrl.setEditMode = function setEditMode(editMode) {
-	        ctrl.editMode = editMode;
-	    };
-	}
-	
-	exports.default = GroceryItemController;
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _groceryEdit = __webpack_require__(14);
-	
-	var _groceryEdit2 = _interopRequireDefault(_groceryEdit);
-	
-	var _groceryEdit3 = __webpack_require__(15);
-	
-	var _groceryEdit4 = _interopRequireDefault(_groceryEdit3);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var groceryEditComponent = {
-	    template: _groceryEdit2.default,
-	    bindings: {
-	        grocery: '<',
-	        save: '&',
-	        cancel: '&?'
-	    },
-	    controller: _groceryEdit4.default,
-	    controllerAs: 'groceryEditCtrl'
-	};
-	
-	exports.default = groceryEditComponent;
-
-/***/ },
-/* 14 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<form ng-submit='groceryEditCtrl.saveGrocery()'>\n    <div class=\"form-group\">\n        <label>\n            New Grocery Item\n        </label>\n       \n        <input type=\"text\" class='form-control' placeholder='Item' ng-model='groceryEditCtrl.editedGrocery.name'>\n\n        <input type=\"number\" class='form-control' placeholder=\"How Many\" ng-model='groceryEditCtrl.editedGrocery.quantity'>\n        \n        <input type='number' class='form-control' placeholder='Cost Per Item' ng-model='groceryEditCtrl.editedGrocery.price'>\n    \n    </div>\n    \n    <button \n        ng-disabled='!groceryEditCtrl.editedGrocery.name'\n        class='btn btn-primary' \n        type='submit'\n    >\n        Save Item\n    </button>\n\n    <button\n        ng-show='groceryEditCtrl.cancel'\n        class='btn btn-danger'\n        type='button'\n        ng-click='groceryEditCtrl.cancel()'\n    >\n        Cancel\n    </button>\n\n</form>\n\n"
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _ramda = __webpack_require__(16);
-	
-	function GroceryEditController() {
-	    var ctrl = this;
-	    ctrl.editedGrocery = {};
-	
-	    ctrl.$onChanges = function $onChanges() {
-	        ctrl.editedGrocery = (0, _ramda.merge)({}, ctrl.grocery);
-	    };
-	
-	    ctrl.saveGrocery = function saveGrocery() {
-	        ctrl.save({ editedGrocery: ctrl.editedGrocery });
-	    };
-	}
-	
-	exports.default = GroceryEditController;
-
-/***/ },
-/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//  Ramda v0.22.1
@@ -41804,6 +41699,149 @@
 
 
 /***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _groceryItem = __webpack_require__(12);
+	
+	var _groceryItem2 = _interopRequireDefault(_groceryItem);
+	
+	var _groceryItem3 = __webpack_require__(13);
+	
+	var _groceryItem4 = _interopRequireDefault(_groceryItem3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var groceryItemComponent = {
+	    template: _groceryItem2.default,
+	    bindings: {
+	        grocery: '<',
+	        delete: '&',
+	        update: '&'
+	    },
+	    controller: _groceryItem4.default,
+	    controllerAs: 'groceryItemCtrl'
+	};
+	
+	exports.default = groceryItemComponent;
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = "<div \n    class=\"panel panel-default grocery-item\"\n    ng-mouseover='groceryItemCtrl.setShowControls(true)'\n    ng-mouseout='groceryItemCtrl.setShowControls(false)'\n>\n\n    <div class=\"panel-body\">\n        <div class='lead' ng-show='!groceryItemCtrl.editMode'>\n            {{ groceryItemCtrl.grocery.name }}\n        </div>\n        <div ng-show='!groceryItemCtrl.editMode'>\n            How many? {{ groceryItemCtrl.grocery.quantity }}\n        </div>\n        <div ng-show='!groceryItemCtrl.editMode'>\n            Cost Per Item? {{ groceryItemCtrl.grocery.price }}\n        </div>\n\n        <grocery-edit\n            ng-show='groceryItemCtrl.editMode'\n            grocery='groceryItemCtrl.groceryToEdit'\n            save='groceryItemCtrl.editGrocery(editedGrocery)'\n            cancel='groceryItemCtrl.setEditMode(false)'\n        ></grocery-edit>\n    </div>\n    \n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{ groceryItemCtrl.grocery.created | date: 'medium' }}\n        </div>\n\n        <div \n            ng-show='groceryItemCtrl.showControls'\n        >\n            <button \n                class='btn btn-default'\n                ng-click='groceryItemCtrl.setEditMode(true)'\n            >\n                <i class='fa fa-pencil-square-o'></i>\n            </button>\n            \n            <button\n                class='btn btn-danger'\n                ng-click='groceryItemCtrl.deleteGrocery()'\n            >\n                <i class='fa fa-trash-o'></i>\n            </button>\n        </div>\n\n    </div>\n\n</div>"
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	function GroceryItemController() {
+	    var ctrl = this;
+	    ctrl.showControls = false;
+	    ctrl.editMode = false;
+	    ctrl.groceryToEdit = {};
+	
+	    ctrl.setShowControls = function setShowControls(showControls) {
+	        ctrl.showControls = showControls;
+	    };
+	
+	    ctrl.setEditMode = function setEditMode(editMode) {
+	        ctrl.editMode = editMode;
+	        ctrl.groceryToEdit = ctrl.grocery;
+	    };
+	
+	    ctrl.editGrocery = function editGrocery(groceryToEdit) {
+	        ctrl.update({ groceryToUpdate: groceryToEdit });
+	        ctrl.grocery = groceryToEdit;
+	        ctrl.editMode = false;
+	    };
+	
+	    ctrl.deleteGrocery = function deleteGrocery() {
+	        ctrl.delete({ groceryToDelete: ctrl.grocery });
+	    };
+	}
+	
+	exports.default = GroceryItemController;
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _groceryEdit = __webpack_require__(15);
+	
+	var _groceryEdit2 = _interopRequireDefault(_groceryEdit);
+	
+	var _groceryEdit3 = __webpack_require__(16);
+	
+	var _groceryEdit4 = _interopRequireDefault(_groceryEdit3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var groceryEditComponent = {
+	    template: _groceryEdit2.default,
+	    bindings: {
+	        grocery: '<',
+	        save: '&',
+	        cancel: '&?'
+	    },
+	    controller: _groceryEdit4.default,
+	    controllerAs: 'groceryEditCtrl'
+	};
+	
+	exports.default = groceryEditComponent;
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<form ng-submit='groceryEditCtrl.saveGrocery()'>\n  \n    <div class=\"form-group\">\n        <label>\n            New Grocery Item\n        </label>\n       \n        <input type=\"text\" class='form-control' placeholder='Item' ng-model='groceryEditCtrl.editedGrocery.name'>\n\n        <input type=\"number\" class='form-control' placeholder=\"How Many\" ng-model='groceryEditCtrl.editedGrocery.quantity'>\n        \n        <input type='number' class='form-control' placeholder='Cost Per Item' ng-model='groceryEditCtrl.editedGrocery.price'>   \n    </div>\n    \n    <button \n        class='btn btn-primary' \n        ng-disabled='!groceryEditCtrl.editedGrocery.name'\n        type='submit'\n    >\n        Save Grocery Item\n    </button>\n\n    <button\n        class='btn btn-danger'\n        ng-show='groceryEditCtrl.cancel'\n        type='button'\n        ng-click='groceryEditCtrl.cancel()'\n    >\n        Cancel\n    </button>\n\n</form>\n\n"
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _ramda = __webpack_require__(10);
+	
+	function GroceryEditController() {
+	    var ctrl = this;
+	    ctrl.editedGrocery = {};
+	
+	    ctrl.$onChanges = function $onChanges() {
+	        ctrl.editedGrocery = (0, _ramda.merge)({}, ctrl.grocery);
+	    };
+	
+	    ctrl.saveGrocery = function saveGrocery() {
+	        ctrl.save({ editedGrocery: ctrl.editedGrocery });
+	    };
+	}
+	
+	exports.default = GroceryEditController;
+
+/***/ },
 /* 17 */
 /***/ function(module, exports) {
 
@@ -41815,7 +41853,11 @@
 	
 	function groceryAPIService($resource) {
 	    var api = {
-	        grocery: $resource('/api/groceryitems/:id/')
+	        grocery: $resource('/api/groceryitems/:id/', { id: '@id' }, {
+	            update: {
+	                method: 'PUT'
+	            }
+	        })
 	    };
 	
 	    return api;

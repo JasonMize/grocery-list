@@ -18,7 +18,12 @@
             <h2>Items</h2>
         </div>    
 
-        <grocery-item ng-repeat='grocery in groceryPageCtrl.groceries' grocery='grocery' />
+        <grocery-item 
+            ng-repeat='grocery in groceryPageCtrl.groceries track by grocery.id' 
+            grocery='grocery'
+            delete='groceryPageCtrl.deleteGrocery(groceryToDelete)' 
+            update='groceryPageCtrl.updateGrocery(groceryToUpdate)'
+        />
     </div>
 
 

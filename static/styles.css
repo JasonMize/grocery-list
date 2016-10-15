@@ -1,9 +1,17 @@
-
-
+body{
+    overflow-x: hidden;
+}
 
 .grocery-item .panel-footer {
     min-height: 60px;
 }
+
+
+
+
+
+
+
 
 
 

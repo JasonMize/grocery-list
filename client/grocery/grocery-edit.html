@@ -1,5 +1,6 @@
 
 <form ng-submit='groceryEditCtrl.saveGrocery()'>
+  
     <div class="form-group">
         <label>
             New Grocery Item
@@ -9,21 +10,20 @@
 
         <input type="number" class='form-control' placeholder="How Many" ng-model='groceryEditCtrl.editedGrocery.quantity'>
         
-        <input type='number' class='form-control' placeholder='Cost Per Item' ng-model='groceryEditCtrl.editedGrocery.price'>
-    
+        <input type='number' class='form-control' placeholder='Cost Per Item' ng-model='groceryEditCtrl.editedGrocery.price'>   
     </div>
     
     <button 
-        ng-disabled='!groceryEditCtrl.editedGrocery.name'
         class='btn btn-primary' 
+        ng-disabled='!groceryEditCtrl.editedGrocery.name'
         type='submit'
     >
-        Save Item
+        Save Grocery Item
     </button>
 
     <button
-        ng-show='groceryEditCtrl.cancel'
         class='btn btn-danger'
+        ng-show='groceryEditCtrl.cancel'
         type='button'
         ng-click='groceryEditCtrl.cancel()'
     >
