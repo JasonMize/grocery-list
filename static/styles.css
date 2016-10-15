@@ -36,28 +36,28 @@ flashes .alert.ng-leave-active {
 
 
 
-sups-item {
+grocery-item {
     display: block !important;
 }
 
-sups-item.ng-enter {
+grocery-item.ng-enter {
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
     transform: translate(0, -1000%);
 }
 
-sups-item.ng-enter-active {
+grocery-item.ng-enter-active {
   transform: translate(0, 0);
 }
 
-sups-item.ng-leave {
+grocery-item.ng-leave {
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   
   transform: translate(0, 0);
 }
 
-sups-item.ng-leave-active {
+grocery-item.ng-leave-active {
     transform: translate(100%, 0);
 }
 
