@@ -9,10 +9,14 @@
             {{ groceryItemCtrl.grocery.name }}
         </div>
         <div ng-show='!groceryItemCtrl.editMode'>
-            How many? {{ groceryItemCtrl.grocery.quantity }}
+            How many? {{ groceryItemCtrl.grocery.min_quantity }}
         </div>
         <div ng-show='!groceryItemCtrl.editMode'>
             Cost Per Item? {{ groceryItemCtrl.grocery.price }}
+        </div>
+
+        <div>
+            Total Item Price: {{ groceryItemCtrl.grocery.item_price_total }}
         </div>
 
         <grocery-edit

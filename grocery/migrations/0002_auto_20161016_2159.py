@@ -14,11 +14,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='groceryitem',
             name='price',
-            field=models.IntegerField(blank=True, null=True),
+            field=models.DecimalField(null=True, blank=True, decimal_places=2, max_digits=9),
         ),
         migrations.AlterField(
             model_name='groceryitem',
             name='quantity',
-            field=models.IntegerField(blank=True, null=True),
+            field=models.IntegerField(null=True, blank=True),
         ),
     ]

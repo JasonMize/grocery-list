@@ -6,6 +6,11 @@
             <p class="lead">
                 Items necessary for happiness of house and home.
             </p>
+            
+            <div>
+                Total Items: {{ groceryPageCtrl.grocery.item_count }}
+            </div>
+
             <grocery-edit
                 grocery='groceryPageCtrl.editedGrocery'
                 save='groceryPageCtrl.saveGrocery(editedGrocery)'

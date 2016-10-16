@@ -6,11 +6,29 @@
             New Grocery Item
         </label>
        
-        <input type="text" class='form-control' placeholder='Item' ng-model='groceryEditCtrl.editedGrocery.name'>
+        <input 
+            type="text"     
+            class='form-control' 
+            placeholder='Item' 
+            ng-model='groceryEditCtrl.editedGrocery.name'
+        >
 
-        <input type="number" class='form-control' placeholder="How Many" ng-model='groceryEditCtrl.editedGrocery.quantity'>
+        <input 
+            type="number" 
+            min='0'
+            class='form-control' 
+            placeholder="How Many" 
+            ng-model='groceryEditCtrl.editedGrocery.quantity'
+        >
         
-        <input type='number' class='form-control' placeholder='Cost Per Item' ng-model='groceryEditCtrl.editedGrocery.price'>   
+        <input 
+            type='number' 
+            step='any'
+            min='0'
+            class='form-control' 
+            placeholder='Cost Per Item' 
+            ng-model='groceryEditCtrl.editedGrocery.price'
+        >   
     </div>
     
     <button 
