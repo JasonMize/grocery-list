@@ -13,11 +13,6 @@ class GroceryItem(models.Model):
     def __str__(self):
         return self.name
 
-    # total count of all grocery items   
-    def item_count(self):
-        item_count = GroceryItem.objects.count()
-        return item_count
-
     # if user doesn't enter an amount, default to 1        
     def min_quantity(self):
         if (self.quantity):
@@ -34,13 +29,6 @@ class GroceryItem(models.Model):
             item_price_total = self.price
         return item_price_total
 
-    # total cost of all grocery items
-    def total_cost(self):
-        total = 0
-        for item in GroceryItem.objects.all():
-            if item.item_price_total():
-                total += item.item_price_total()
-        return total
 
 
 
