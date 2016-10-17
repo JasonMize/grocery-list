@@ -5,7 +5,7 @@ class GroceryItem(models.Model):
     name = models.CharField(max_length = 50)
     quantity = models.IntegerField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
-    price = models.IntegerField(
+    price = models.FloatField(
         blank=True, 
         null=True)
 
@@ -13,10 +13,12 @@ class GroceryItem(models.Model):
     def __str__(self):
         return self.name
 
+    # total count of all grocery items   
     def item_count(self):
         item_count = GroceryItem.objects.count()
         return item_count
 
+    # if user doesn't enter an amount, default to 1        
     def min_quantity(self):
         if (self.quantity):
             return self.quantity
@@ -24,12 +26,14 @@ class GroceryItem(models.Model):
             self.quantity = 1
         return self.quantity
 
+    # individual item cost total - amount * price
     def item_price_total(self):
         if (self.price and self.quantity):
             item_price_total = self.price * self.quantity
         else:
             item_price_total = self.price
         return item_price_total
+
 
 
 

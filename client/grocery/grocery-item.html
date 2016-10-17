@@ -12,11 +12,10 @@
             How many? {{ groceryItemCtrl.grocery.min_quantity }}
         </div>
         <div ng-show='!groceryItemCtrl.editMode'>
-            Cost Per Item? {{ groceryItemCtrl.grocery.price }}
+            Cost Per Item? {{ groceryItemCtrl.grocery.price | currency }}
         </div>
-
         <div>
-            Total Item Price: {{ groceryItemCtrl.grocery.item_price_total }}
+            Total Item Price: {{ groceryItemCtrl.grocery.item_price_total | currency }}
         </div>
 
         <grocery-edit
