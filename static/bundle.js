@@ -37113,8 +37113,8 @@
 	    function getGrocery() {
 	        groceryAPIService.grocery.get().$promise.then(function (data) {
 	            ctrl.groceries = data.results;
-	            ctrl.totalItemCount = data.results[0].item_count;
-	            ctrl.totalCost = data.results[0].total_cost;
+	            ctrl.totalItemCount = data.count;
+	            ctrl.totalCost = data.total_cost;
 	        });
 	    }
 	    getGrocery();
