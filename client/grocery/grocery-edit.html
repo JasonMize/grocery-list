@@ -1,52 +1,54 @@
-
-<form ng-submit='groceryEditCtrl.saveGrocery()' class='newItemForm'>
-  
-    <div class="form-group">
-        <label>
-            New Grocery Item
-        </label>
-       
-        <input 
-            type="text"     
-            class='form-control' 
-            placeholder='Item' 
-            ng-model='groceryEditCtrl.editedGrocery.name'
-        >
-
-        <input 
-            type="number" 
-            min='0'
-            class='form-control' 
-            placeholder="How Many" 
-            ng-model='groceryEditCtrl.editedGrocery.quantity'
-        >
-        
-        <input 
-            type='number' 
-            step='any'
-            min='0'
-            class='form-control' 
-            placeholder='Cost Per Item' 
-            ng-model='groceryEditCtrl.editedGrocery.price'
-        >   
-    </div>
+<div class='newItemForm'>
     
-    <button 
-        class='btn btn-primary' 
-        ng-disabled='!groceryEditCtrl.editedGrocery.name'
-        type='submit'
-    >
-        Save Grocery Item
-    </button>
+    <form ng-submit='groceryEditCtrl.saveGrocery()'>
+      
+        <div class="form-group">
+            <label>
+                New Grocery Item
+            </label>
+           
+            <input 
+                type="text"     
+                class='form-control' 
+                placeholder='Item' 
+                ng-model='groceryEditCtrl.editedGrocery.name'
+            >
 
-    <button
-        class='btn btn-danger'
-        ng-show='groceryEditCtrl.cancel'
-        type='button'
-        ng-click='groceryEditCtrl.cancel()'
-    >
-        Cancel
-    </button>
+            <input 
+                type="number" 
+                min='0'
+                class='form-control' 
+                placeholder="How Many" 
+                ng-model='groceryEditCtrl.editedGrocery.quantity'
+            >
+            
+            <input 
+                type='number' 
+                step='any'
+                min='0'
+                class='form-control' 
+                placeholder='Cost Per Item' 
+                ng-model='groceryEditCtrl.editedGrocery.price'
+            >   
+        </div>
+        
+        <button 
+            class='btn btn-primary' 
+            ng-disabled='!groceryEditCtrl.editedGrocery.name'
+            type='submit'
+        >
+            Save Grocery Item
+        </button>
 
-</form>
+        <button
+            class='btn btn-danger'
+            ng-show='groceryEditCtrl.cancel'
+            type='button'
+            ng-click='groceryEditCtrl.cancel()'
+        >
+            Cancel
+        </button>
 
+    </form>
+
+</div>

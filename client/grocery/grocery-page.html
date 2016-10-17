@@ -3,20 +3,29 @@
     <div class="col-md-8 col-md-offset-2">
         <div class="jumbotron">
             
-            <div class=''>
-                <div>
-                    Total Items: {{ groceryPageCtrl.totalItemCount }}
-                </div>
-                <div>
-                    Total Cost: {{ groceryPageCtrl.totalCost | currency }}
-                </div>
-            </div>                
             
-            <div class=''>
-                <h1>Grocery List</h1>
-                <p class="lead">
-                    Items necessary for happiness of house and home.
-                </p>
+            <div class='title-stats'>
+                <div class='title'> 
+                    <h1>Grocery List</h1>
+                    
+                </div>
+
+                <div class='stat-totals'>
+                    <div>
+                        <div>
+                            Total Items: {{ groceryPageCtrl.totalItemCount }}
+                        </div>
+                        <div>
+                            Total Cost: {{ groceryPageCtrl.totalCost | currency }}
+                        </div>
+                    </div>
+                </div>                
+                
+                <div class=title-byline>
+                    <p class="lead">
+                        Items necessary for happiness of house and home.
+                    </p>
+                </div>    
             </div>
             
             <grocery-edit
