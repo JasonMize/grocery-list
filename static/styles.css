@@ -62,6 +62,8 @@ grocery-item.ng-leave-active {
 }
 
 
-
+.newItemForm {
+  border: 1px solid red;
+}
 
 

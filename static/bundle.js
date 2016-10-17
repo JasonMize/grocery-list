@@ -37088,7 +37088,7 @@
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n\n    <div class=\"col-md-8 col-md-offset-2\">\n        <div class=\"jumbotron\">\n            <h1>Grocery List</h1>\n            <p class=\"lead\">\n                Items necessary for happiness of house and home.\n            </p>\n            \n            <div>\n                Total Items: {{ groceryPageCtrl.editedGrocery.item_count }}\n            </div>\n\n            <grocery-edit\n                grocery='groceryPageCtrl.editedGrocery'\n                save='groceryPageCtrl.saveGrocery(editedGrocery)'\n            />\n        </div>\n    </div>\n        \n    <div class=\"col-md-8 col-md-offset-2\">\n        <div>\n            <h2>Items</h2>\n        </div>    \n\n        <grocery-item \n            ng-repeat='grocery in groceryPageCtrl.groceries track by grocery.id' \n            grocery='grocery'\n            delete='groceryPageCtrl.deleteGrocery(groceryToDelete)' \n            update='groceryPageCtrl.updateGrocery(groceryToUpdate)'\n        />\n    </div>\n\n\n\n</div>\n"
+	module.exports = "<div class=\"row\">\n\n    <div class=\"col-md-8 col-md-offset-2\">\n        <div class=\"jumbotron\">\n            \n            <div class=''>\n                <div>\n                    Total Items: {{ groceryPageCtrl.totalItemCount }}\n                </div>\n                <div>\n                    Total Cost: {{ groceryPageCtrl.totalCost | currency }}\n                </div>\n            </div>                \n            \n            <div class=''>\n                <h1>Grocery List</h1>\n                <p class=\"lead\">\n                    Items necessary for happiness of house and home.\n                </p>\n            </div>\n            \n            <grocery-edit\n                grocery='groceryPageCtrl.editedGrocery'\n                save='groceryPageCtrl.saveGrocery(editedGrocery)'\n            ></grocery-edit>\n        </div>\n    </div>\n        \n    <div class=\"col-md-8 col-md-offset-2\">\n        <div>\n            <h2>Items</h2>\n        </div>    \n\n        <grocery-item \n            ng-repeat='grocery in groceryPageCtrl.groceries track by grocery.id' \n            grocery='grocery'\n            delete='groceryPageCtrl.deleteGrocery(groceryToDelete)' \n            update='groceryPageCtrl.updateGrocery(groceryToUpdate)'\n        ></grocery-item>\n    </div>\n\n</div>\n\n<hr>\n"
 
 /***/ },
 /* 16 */
@@ -37107,14 +37107,18 @@
 	function GroceryPageController(groceryAPIService, flashesService, $interval) {
 	    var ctrl = this;
 	    ctrl.editedGrocery = {};
+	    ctrl.totalItemCount = 0;
+	    ctrl.totalCost = 0;
 	
 	    function getGrocery() {
 	        groceryAPIService.grocery.get().$promise.then(function (data) {
 	            ctrl.groceries = data.results;
+	            ctrl.totalItemCount = data.results[0].item_count;
+	            ctrl.totalCost = data.results[0].total_cost;
 	        });
 	    }
 	    getGrocery();
-	    $interval(getGrocery, 4000);
+	    $interval(getGrocery, 2000);
 	
 	    ctrl.saveGrocery = function saveGrocery(editedGrocery) {
 	        groceryAPIService.grocery.save(editedGrocery).$promise.then(function (savedGrocery) {
@@ -46099,7 +46103,7 @@
 /* 22 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<form ng-submit='groceryEditCtrl.saveGrocery()'>\n  \n    <div class=\"form-group\">\n        <label>\n            New Grocery Item\n        </label>\n       \n        <input \n            type=\"text\"     \n            class='form-control' \n            placeholder='Item' \n            ng-model='groceryEditCtrl.editedGrocery.name'\n        >\n\n        <input \n            type=\"number\" \n            min='0'\n            class='form-control' \n            placeholder=\"How Many\" \n            ng-model='groceryEditCtrl.editedGrocery.quantity'\n        >\n        \n        <input \n            type='number' \n            step='any'\n            min='0'\n            class='form-control' \n            placeholder='Cost Per Item' \n            ng-model='groceryEditCtrl.editedGrocery.price'\n        >   \n    </div>\n    \n    <button \n        class='btn btn-primary' \n        ng-disabled='!groceryEditCtrl.editedGrocery.name'\n        type='submit'\n    >\n        Save Grocery Item\n    </button>\n\n    <button\n        class='btn btn-danger'\n        ng-show='groceryEditCtrl.cancel'\n        type='button'\n        ng-click='groceryEditCtrl.cancel()'\n    >\n        Cancel\n    </button>\n\n</form>\n\n"
+	module.exports = "\n<form ng-submit='groceryEditCtrl.saveGrocery()' class='newItemForm'>\n  \n    <div class=\"form-group\">\n        <label>\n            New Grocery Item\n        </label>\n       \n        <input \n            type=\"text\"     \n            class='form-control' \n            placeholder='Item' \n            ng-model='groceryEditCtrl.editedGrocery.name'\n        >\n\n        <input \n            type=\"number\" \n            min='0'\n            class='form-control' \n            placeholder=\"How Many\" \n            ng-model='groceryEditCtrl.editedGrocery.quantity'\n        >\n        \n        <input \n            type='number' \n            step='any'\n            min='0'\n            class='form-control' \n            placeholder='Cost Per Item' \n            ng-model='groceryEditCtrl.editedGrocery.price'\n        >   \n    </div>\n    \n    <button \n        class='btn btn-primary' \n        ng-disabled='!groceryEditCtrl.editedGrocery.name'\n        type='submit'\n    >\n        Save Grocery Item\n    </button>\n\n    <button\n        class='btn btn-danger'\n        ng-show='groceryEditCtrl.cancel'\n        type='button'\n        ng-click='groceryEditCtrl.cancel()'\n    >\n        Cancel\n    </button>\n\n</form>\n\n"
 
 /***/ },
 /* 23 */

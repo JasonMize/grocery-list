@@ -2,19 +2,27 @@
 
     <div class="col-md-8 col-md-offset-2">
         <div class="jumbotron">
-            <h1>Grocery List</h1>
-            <p class="lead">
-                Items necessary for happiness of house and home.
-            </p>
             
-            <div>
-                Total Items: {{ groceryPageCtrl.editedGrocery.item_count }}
+            <div class=''>
+                <div>
+                    Total Items: {{ groceryPageCtrl.totalItemCount }}
+                </div>
+                <div>
+                    Total Cost: {{ groceryPageCtrl.totalCost | currency }}
+                </div>
+            </div>                
+            
+            <div class=''>
+                <h1>Grocery List</h1>
+                <p class="lead">
+                    Items necessary for happiness of house and home.
+                </p>
             </div>
-
+            
             <grocery-edit
                 grocery='groceryPageCtrl.editedGrocery'
                 save='groceryPageCtrl.saveGrocery(editedGrocery)'
-            />
+            ></grocery-edit>
         </div>
     </div>
         
@@ -28,9 +36,9 @@
             grocery='grocery'
             delete='groceryPageCtrl.deleteGrocery(groceryToDelete)' 
             update='groceryPageCtrl.updateGrocery(groceryToUpdate)'
-        />
+        ></grocery-item>
     </div>
 
-
-
 </div>
+
+<hr>

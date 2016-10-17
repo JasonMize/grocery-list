@@ -7,5 +7,6 @@ from .serializers import GroceryItemSerializer
 class GroceryItemViewSet(viewsets.ModelViewSet):
     queryset = GroceryItem.objects.all().order_by('-created')
     serializer_class = GroceryItemSerializer
+    
 
 

@@ -4,14 +4,18 @@ import { findIndex } from 'ramda';
 function GroceryPageController(groceryAPIService, flashesService, $interval) {
     const ctrl = this;
     ctrl.editedGrocery = {};
+    ctrl.totalItemCount = 0;
+    ctrl.totalCost = 0;
 
     function getGrocery() {
         groceryAPIService.grocery.get().$promise.then((data) => {
             ctrl.groceries = data.results;
+            ctrl.totalItemCount = data.results[0].item_count;
+            ctrl.totalCost = data.results[0].total_cost;
         });
     }
     getGrocery();
-    $interval(getGrocery, 4000);
+    $interval(getGrocery, 2000);
 
     ctrl.saveGrocery = function saveGrocery(editedGrocery) {
         groceryAPIService.grocery.save(editedGrocery).$promise.then((savedGrocery) => {

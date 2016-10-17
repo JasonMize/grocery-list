@@ -34,6 +34,13 @@ class GroceryItem(models.Model):
             item_price_total = self.price
         return item_price_total
 
+    # total cost of all grocery items
+    def total_cost(self):
+        total = 0
+        for item in GroceryItem.objects.all():
+            if item.item_price_total():
+                total += item.item_price_total()
+        return total
 
 
 

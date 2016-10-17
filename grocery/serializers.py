@@ -14,4 +14,5 @@ class GroceryItemSerializer(serializers.ModelSerializer):
             'item_count',
             'item_price_total',
             'min_quantity',
+            'total_cost',
         )
